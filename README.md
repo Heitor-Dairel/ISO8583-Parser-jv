@@ -41,5 +41,5 @@ The parser executes the following operations in sequence:
 This project is licensed under the [MIT](LICENSE) license.
  
 ## Author
-Developed by **Heitor Dairel**
+Developed by **Heitor Dairel**  
 [GitHub](https://github.com/heitor-dairel) · [LinkedIn](https://linkedin.com/in/heitor-dairel)
