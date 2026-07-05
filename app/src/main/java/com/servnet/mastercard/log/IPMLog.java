@@ -38,7 +38,7 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
     }
 
     @Override
-    public final void close() {
+    public void close() {
         this.writeFileLog.close();
         return;
     }
