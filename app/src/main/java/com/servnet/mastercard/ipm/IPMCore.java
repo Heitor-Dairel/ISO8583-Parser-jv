@@ -51,6 +51,8 @@ public final class IPMCore extends IPMParameter {
 
                 logger.info(IPMCoreConstants.INFO_MSG_IPM_LOGG, ipmFileName.get(), ipmParse.getMsgCount());
 
+                return;
+
             }
         } catch (IPMFileException | IPMParseException | IPMLogException e) {
 
@@ -58,7 +60,6 @@ public final class IPMCore extends IPMParameter {
 
         }
 
-        return;
     }
 
 }

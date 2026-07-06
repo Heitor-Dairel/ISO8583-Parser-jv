@@ -63,13 +63,13 @@ public final class IPMConfig extends IPMParameter {
     private void fileCycleValid() throws IPMConfigException {
 
         switch (this.fileCycle) {
-            case IPMConfigConstants.CYCLE_1:
-            case IPMConfigConstants.CYCLE_2:
-            case IPMConfigConstants.CYCLE_3:
+            case IPMConfigConstants.CYCLE_1, IPMConfigConstants.CYCLE_2, IPMConfigConstants.CYCLE_3 -> {
                 return;
-            default:
+            }
+            default -> {
                 logger.error(IPMConfigConstants.ERROR_MSG_CYCLE_LOGG, this.fileCycle);
                 throw new IPMConfigException(IPMConfigConstants.ERROR_MSG_CYCLE_EXCEPTION, this.fileCycle);
+            }
         }
 
     }

@@ -82,6 +82,8 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
             Files.createFile(filePath);
 
+            return filePath;
+
         } catch (IOException e) {
 
             logger.error(IPMLogConstants.ERROR_MSG_CREATE_FILE_LOGG, filePathString);
@@ -90,7 +92,6 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
         }
 
-        return filePath;
     }
 
     private void createDirectory() throws IPMLogException {
