@@ -52,8 +52,10 @@ tasks.shadowJar {
 }
 
 tasks.jar {
-    manifest {
-        attributes["Main-Class"] = "com.servnet.mastercard.App"
-    }
+    enabled = false
+}
+ 
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }
 
