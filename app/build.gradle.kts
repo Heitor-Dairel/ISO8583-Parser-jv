@@ -5,6 +5,8 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/9.6.1/userguide/building_java_projects.html in the Gradle documentation.
  */
 
+import org.gradle.api.file.DuplicatesStrategy
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -25,6 +27,7 @@ dependencies {
     // This dependency is used by the application.
     implementation("org.jpos:jpos:3.0.1")
     implementation("ch.qos.logback:logback-classic:1.5.37")
+    implementation("io.github.cdimascio:dotenv-java:3.2.0")
 
 }
 
@@ -46,6 +49,7 @@ tasks.named<Test>("test") {
 }
 
 tasks.shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     archiveBaseName.set("ISO8583-Parser-jv")
     archiveClassifier.set("")
     archiveVersion.set("1.0.0")

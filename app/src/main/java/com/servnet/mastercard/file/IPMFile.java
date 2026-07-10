@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import com.servnet.mastercard.exception.IPMFileException;
 import com.servnet.mastercard.parameter.IPMParameter;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public final class IPMFile extends IPMParameter {
 
     private final Logger logger = LoggerFactory.getLogger(IPMFile.class);
@@ -99,8 +101,7 @@ public final class IPMFile extends IPMParameter {
 
 class IPMFileConstants {
 
-    public static final Path DIR_ISO = Path.of(
-            "C:/Users/heitor.tavares/OneDrive - TRIVALE ADMINISTRACAO LTDA/Operação Processadora - Arquivos CSU");
+    public static final Path DIR_ISO = Path.of(Dotenv.load().get("DIR_PATH"));
 
     // Loggs Message
     public static final String ERROR_MSG_DIR_LOGG = "Erro ao percorrer diretorio '{}'.";
