@@ -37,7 +37,6 @@ public final class IPMParse extends IPMParameter {
 
         this.fileIsoPayload();
 
-        return;
     }
 
     public int getMsgCount() {
@@ -78,13 +77,11 @@ public final class IPMParse extends IPMParameter {
 
         } catch (ISOException e) {
 
-            log.error(IPMParseConstants.ERROR_MSG_PARSE_LOGG, this.msgCount);
+            log.error(IPMParseConstants.ERROR_MSG_PARSE_LOG, this.msgCount);
 
             throw new IPMParseException(e, IPMParseConstants.ERROR_MSG_PARSE_EXCEPTION, this.msgCount);
 
         }
-
-        return;
 
     }
 
@@ -105,7 +102,7 @@ public final class IPMParse extends IPMParameter {
 
         } catch (ISOException e) {
 
-            log.error(IPMParseConstants.ERROR_MSG_PACKAGER_LOGG, IPMParseConstants.PACKAGER_PATH);
+            log.error(IPMParseConstants.ERROR_MSG_PACKAGER_LOG, IPMParseConstants.PACKAGER_PATH);
 
             throw new IPMParseException(e, IPMParseConstants.ERROR_MSG_PACKAGER_EXCEPTION,
                     IPMParseConstants.PACKAGER_PATH);
@@ -115,14 +112,18 @@ public final class IPMParse extends IPMParameter {
 
     private IPMExtractResult extractIsoPayload(byte[] raw, int index, int lenRaw) {
 
-        int indexStart = index, indexCurr = index;
+        int indexStart = index;
+        int indexCurr = index;
         ByteArrayOutputStream payload = new ByteArrayOutputStream();
-        int segId, segLen, payloadLen;
+        int segId;
+        int segLen;
+        int payloadLen;
+        boolean isMatch = true;
 
-        while (true) {
+        while (isMatch) {
 
             if (indexCurr + 4 > lenRaw) {
-                break;
+                isMatch = false;
             }
 
             segId = raw[indexCurr + 2] & 0xFF;
@@ -130,16 +131,18 @@ public final class IPMParse extends IPMParameter {
 
             payloadLen = segLen - 4;
 
-            payload.write(raw, indexCurr += 4, payloadLen);
+            indexCurr += 4;
+
+            payload.write(raw, indexCurr, payloadLen);
 
             indexCurr += payloadLen;
 
             if (segId == 0) {
-                break;
+                isMatch = false;
             }
 
             if (indexCurr + 2 < lenRaw && raw[indexCurr + 2] == 0) {
-                break;
+                isMatch = false;
             }
         }
 
@@ -161,15 +164,18 @@ class IPMExtractResult {
 
 }
 
-class IPMParseConstants {
+final class IPMParseConstants {
+
+    private IPMParseConstants() {
+    }
 
     // Path Packager
     public static final InputStream PACKAGER_PATH = ClassLoader.getSystemClassLoader()
             .getResourceAsStream("packager/iso93ebcdic.xml");
 
-    // Loggs Message
-    public static final String ERROR_MSG_PARSE_LOGG = "Erro ao realizar parse na linha '{}'.";
-    public static final String ERROR_MSG_PACKAGER_LOGG = "Erro ao encontrar packager no diretorio '{}'.";
+    // Logs Message
+    public static final String ERROR_MSG_PARSE_LOG = "Erro ao realizar parse na linha '{}'.";
+    public static final String ERROR_MSG_PACKAGER_LOG = "Erro ao encontrar packager no diretorio '{}'.";
 
     // Exception Message
     public static final String ERROR_MSG_PARSE_EXCEPTION = "Falha ao realizar parse na linha '%d'.";

@@ -22,14 +22,15 @@ public final class IPMPdsTag extends IPMParameter {
 
         p.print(this.ipmPds);
 
-        return;
     }
 
     private String parse() {
 
         StringBuilder stringBuilder = new StringBuilder(3000);
-        int lenRaw = this.raw.length, index = 0;
-        String tag, value;
+        int lenRaw = this.raw.length;
+        int index = 0;
+        String tag;
+        String value;
         int len;
 
         stringBuilder.append(IPMPdsTagConstants.OPENING_TAG);
@@ -37,8 +38,10 @@ public final class IPMPdsTag extends IPMParameter {
         while (index < lenRaw) {
 
             tag = new String(this.raw, index, IPMPdsTagConstants.LEN_TAG_FIELD);
-            len = Integer.parseInt(new String(this.raw, index += IPMPdsTagConstants.LEN_TAG_FIELD, 3));
-            value = new String(this.raw, index += 3, len);
+            index += IPMPdsTagConstants.LEN_TAG_FIELD;
+            len = Integer.parseInt(new String(this.raw, index, 3));
+            index += 3;
+            value = new String(this.raw, index, len);
             index += len;
 
             stringBuilder.append(IPMPdsTagConstants.INDENT)
@@ -58,7 +61,10 @@ public final class IPMPdsTag extends IPMParameter {
 
 }
 
-class IPMPdsTagConstants {
+final class IPMPdsTagConstants {
+
+    private IPMPdsTagConstants() {
+    }
 
     // XML Pds Parse
     public static final String OPENING_TAG = "<pds>\n";

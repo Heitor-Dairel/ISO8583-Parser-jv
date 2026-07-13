@@ -33,14 +33,13 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
         this.constructor();
 
-        this.writeFileLog = this.creatPrintStream(this.createFile());
+        this.writeFileLog = this.createPrintStream(this.createFile());
 
     }
 
     @Override
     public void close() {
         this.writeFileLog.close();
-        return;
     }
 
     private void constructor() {
@@ -48,11 +47,9 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
         this.deleteDirectory();
         this.createDirectory();
 
-        return;
-
     }
 
-    private PrintStream creatPrintStream(Path path) {
+    private PrintStream createPrintStream(Path path) {
 
         OutputStream channel;
         BufferedOutputStream buffered;
@@ -61,7 +58,7 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
             channel = Files.newOutputStream(path);
         } catch (IOException e) {
 
-            logger.error(IPMLogConstants.ERROR_MSG_CREATE_STREAM_LOGG, path);
+            logger.error(IPMLogConstants.ERROR_MSG_CREATE_STREAM_LOG, path);
 
             throw new IPMLogException(e, IPMLogConstants.ERROR_MSG_CREATE_STREAM_EXCEPTION, path);
 
@@ -86,7 +83,7 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
         } catch (IOException e) {
 
-            logger.error(IPMLogConstants.ERROR_MSG_CREATE_FILE_LOGG, filePathString);
+            logger.error(IPMLogConstants.ERROR_MSG_CREATE_FILE_LOG, filePathString);
 
             throw new IPMLogException(e, IPMLogConstants.ERROR_MSG_CREATE_FILE_EXCEPTION, filePathString);
 
@@ -99,11 +96,9 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
             Files.createDirectories(IPMLogConstants.OUTPUT);
 
-            return;
-
         } catch (IOException e) {
 
-            logger.error(IPMLogConstants.ERROR_MSG_CREATE_DIR_LOGG, IPMLogConstants.OUTPUT);
+            logger.error(IPMLogConstants.ERROR_MSG_CREATE_DIR_LOG, IPMLogConstants.OUTPUT);
 
             throw new IPMLogException(e, IPMLogConstants.ERROR_MSG_CREATE_DIR_EXCEPTION, IPMLogConstants.OUTPUT);
         }
@@ -121,7 +116,7 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
             } catch (IOException e) {
 
-                logger.error(IPMLogConstants.ERROR_MSG_DIR_LOGG, IPMLogConstants.OUTPUT);
+                logger.error(IPMLogConstants.ERROR_MSG_DIR_LOG, IPMLogConstants.OUTPUT);
 
                 throw new IPMLogException(e, IPMLogConstants.ERROR_MSG_DIR_EXCEPTION, IPMLogConstants.OUTPUT);
 
@@ -132,11 +127,9 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
                 for (Path path : collectPath)
                     Files.deleteIfExists(path);
 
-                return;
-
             } catch (IOException e) {
 
-                logger.error(IPMLogConstants.ERROR_MSG_DELETE_DIR_LOGG, IPMLogConstants.OUTPUT);
+                logger.error(IPMLogConstants.ERROR_MSG_DELETE_DIR_LOG, IPMLogConstants.OUTPUT);
 
                 throw new IPMLogException(e, IPMLogConstants.ERROR_MSG_DELETE_DIR_EXCEPTION,
                         IPMLogConstants.OUTPUT);
@@ -147,16 +140,19 @@ public final class IPMLog extends IPMParameter implements AutoCloseable {
 
 }
 
-class IPMLogConstants {
+final class IPMLogConstants {
+
+    private IPMLogConstants() {
+    }
 
     public static final Path OUTPUT = Path.of(System.getProperty("user.dir"), "output");
 
-    // Loggs Message
-    public static final String ERROR_MSG_CREATE_FILE_LOGG = "Erro ao criar arquivo '{}'.";
-    public static final String ERROR_MSG_CREATE_STREAM_LOGG = "Erro ao iniciar escrita no arquivo '{}'.";
-    public static final String ERROR_MSG_CREATE_DIR_LOGG = "Erro ao criar diretorio '{}'.";
-    public static final String ERROR_MSG_DIR_LOGG = "Erro ao percorrer diretorio '{}'.";
-    public static final String ERROR_MSG_DELETE_DIR_LOGG = "Erro ao deletar pastas e arquivos do diretorio '{}'.";
+    // Logs Message
+    public static final String ERROR_MSG_CREATE_FILE_LOG = "Erro ao criar arquivo '{}'.";
+    public static final String ERROR_MSG_CREATE_STREAM_LOG = "Erro ao iniciar escrita no arquivo '{}'.";
+    public static final String ERROR_MSG_CREATE_DIR_LOG = "Erro ao criar diretorio '{}'.";
+    public static final String ERROR_MSG_DIR_LOG = "Erro ao percorrer diretorio '{}'.";
+    public static final String ERROR_MSG_DELETE_DIR_LOG = "Erro ao deletar pastas e arquivos do diretorio '{}'.";
 
     // Exception Message
     public static final String ERROR_MSG_CREATE_FILE_EXCEPTION = "Falha ao criar arquivo '%s'.";

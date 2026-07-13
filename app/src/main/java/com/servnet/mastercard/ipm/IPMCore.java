@@ -19,7 +19,8 @@ public final class IPMCore extends IPMParameter {
 
     private final Logger logger = LoggerFactory.getLogger(IPMCore.class);
 
-    private final String fileDate, fileCycle;
+    private final String fileDate;
+    private final String fileCycle;
 
     public IPMCore(String fileDate, String fileCycle) throws IPMException {
 
@@ -49,9 +50,7 @@ public final class IPMCore extends IPMParameter {
 
                 ipmParse.initIPMParse();
 
-                logger.info(IPMCoreConstants.INFO_MSG_IPM_LOGG, ipmFileName.get(), ipmParse.getMsgCount());
-
-                return;
+                logger.info(IPMCoreConstants.INFO_MSG_IPM_LOG, ipmFileName.get(), ipmParse.getMsgCount());
 
             }
         } catch (IPMFileException | IPMParseException | IPMLogException e) {
@@ -64,9 +63,12 @@ public final class IPMCore extends IPMParameter {
 
 }
 
-class IPMCoreConstants {
+final class IPMCoreConstants {
 
-    // Loggs Message
-    public static final String INFO_MSG_IPM_LOGG = "{} processado com sucesso, {} linhas lidas.";
+    private IPMCoreConstants() {
+    }
+
+    // Logs Message
+    public static final String INFO_MSG_IPM_LOG = "{} processado com sucesso, {} linhas lidas.";
 
 }

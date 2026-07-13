@@ -19,7 +19,8 @@ public final class IPMFile extends IPMParameter {
 
     private final Logger logger = LoggerFactory.getLogger(IPMFile.class);
 
-    private final String fileDate, fileCycle;
+    private final String fileDate;
+    private final String fileCycle;
 
     private Optional<String> fileName = Optional.empty();
     private Optional<byte[]> fileRaw = Optional.empty();
@@ -57,7 +58,7 @@ public final class IPMFile extends IPMParameter {
 
         } catch (IOException e) {
 
-            logger.error(IPMFileConstants.ERROR_MSG_DIR_LOGG, IPMFileConstants.DIR_ISO);
+            logger.error(IPMFileConstants.ERROR_MSG_DIR_LOG, IPMFileConstants.DIR_ISO);
 
             throw new IPMFileException(e, IPMFileConstants.ERROR_MSG_DIR_EXCEPTION, IPMFileConstants.DIR_ISO);
 
@@ -75,9 +76,7 @@ public final class IPMFile extends IPMParameter {
 
         }
 
-        logger.warn(IPMFileConstants.ERROR_MSG_FILE_LOGG, this.fileDate, this.fileCycle);
-
-        return;
+        logger.warn(IPMFileConstants.ERROR_MSG_FILE_LOG, this.fileDate, this.fileCycle);
 
     }
 
@@ -89,7 +88,7 @@ public final class IPMFile extends IPMParameter {
 
         } catch (IOException e) {
 
-            logger.error(IPMFileConstants.ERROR_MSG_READ_LOGG, path.getFileName());
+            logger.error(IPMFileConstants.ERROR_MSG_READ_LOG, path.getFileName());
 
             throw new IPMFileException(e, IPMFileConstants.ERROR_MSG_READ_EXCEPTION, path.getFileName());
 
@@ -99,14 +98,18 @@ public final class IPMFile extends IPMParameter {
 
 }
 
-class IPMFileConstants {
+final class IPMFileConstants {
+
+    private IPMFileConstants() {
+
+    }
 
     public static final Path DIR_ISO = Path.of(Dotenv.load().get("DIR_PATH"));
 
-    // Loggs Message
-    public static final String ERROR_MSG_DIR_LOGG = "Erro ao percorrer diretorio '{}'.";
-    public static final String ERROR_MSG_FILE_LOGG = "Arquivo nao encontrado para data '{}' e ciclo '{}'.";
-    public static final String ERROR_MSG_READ_LOGG = "Erro ao ler arquivo '{}'.";
+    // Logs Message
+    public static final String ERROR_MSG_DIR_LOG = "Erro ao percorrer diretorio '{}'.";
+    public static final String ERROR_MSG_FILE_LOG = "Arquivo nao encontrado para data '{}' e ciclo '{}'.";
+    public static final String ERROR_MSG_READ_LOG = "Erro ao ler arquivo '{}'.";
 
     // Exception Message
     public static final String ERROR_MSG_DIR_EXCEPTION = "Falha ao percorrer diretório '%s'";

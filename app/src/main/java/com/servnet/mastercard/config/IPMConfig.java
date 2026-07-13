@@ -14,7 +14,8 @@ public final class IPMConfig extends IPMParameter {
 
     private final Logger logger = LoggerFactory.getLogger(IPMConfig.class);
 
-    private final String fileDate, fileCycle;
+    private final String fileDate;
+    private final String fileCycle;
 
     private LocalDate datePrev;
 
@@ -40,8 +41,6 @@ public final class IPMConfig extends IPMParameter {
         this.fileCycleValid();
         this.fileDateValid();
 
-        return;
-
     }
 
     private void fileDateValid() throws IPMConfigException {
@@ -49,11 +48,10 @@ public final class IPMConfig extends IPMParameter {
         try {
 
             this.datePrev = LocalDate.parse(fileDate, IPMConfigConstants.DATE_FORMAT_PREV);
-            return;
 
         } catch (DateTimeParseException e) {
 
-            logger.error(IPMConfigConstants.ERROR_MSG_DATE_LOGG, this.fileDate);
+            logger.error(IPMConfigConstants.ERROR_MSG_DATE_LOG, this.fileDate);
 
             throw new IPMConfigException(e, IPMConfigConstants.ERROR_MSG_DATE_EXCEPTION, this.fileDate);
         }
@@ -64,10 +62,10 @@ public final class IPMConfig extends IPMParameter {
 
         switch (this.fileCycle) {
             case IPMConfigConstants.CYCLE_1, IPMConfigConstants.CYCLE_2, IPMConfigConstants.CYCLE_3 -> {
-                return;
+                break;
             }
             default -> {
-                logger.error(IPMConfigConstants.ERROR_MSG_CYCLE_LOGG, this.fileCycle);
+                logger.error(IPMConfigConstants.ERROR_MSG_CYCLE_LOG, this.fileCycle);
                 throw new IPMConfigException(IPMConfigConstants.ERROR_MSG_CYCLE_EXCEPTION, this.fileCycle);
             }
         }
@@ -75,11 +73,14 @@ public final class IPMConfig extends IPMParameter {
     }
 }
 
-class IPMConfigConstants {
+final class IPMConfigConstants {
 
-    // Loggs Message
-    public static final String ERROR_MSG_DATE_LOGG = "Formato de data invalido: '{}'.";
-    public static final String ERROR_MSG_CYCLE_LOGG = "Ciclo invalido: '{}'.";
+    private IPMConfigConstants() {
+    }
+
+    // Logs Message
+    public static final String ERROR_MSG_DATE_LOG = "Formato de data invalido: '{}'.";
+    public static final String ERROR_MSG_CYCLE_LOG = "Ciclo invalido: '{}'.";
 
     // Exception Message
     public static final String ERROR_MSG_DATE_EXCEPTION = "Falha ao formatar data: '%s'.";
