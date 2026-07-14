@@ -117,12 +117,12 @@ public final class IPMParse extends IPMParameter {
         int segId;
         int segLen;
         int payloadLen;
-        boolean isMatch = true;
+        boolean running = true;
 
-        while (isMatch) {
+        while (running) {
 
             if (indexCurr + 4 > lenRaw) {
-                isMatch = false;
+                break;
             }
 
             segId = raw[indexCurr + 2] & 0xFF;
@@ -137,11 +137,11 @@ public final class IPMParse extends IPMParameter {
             indexCurr += payloadLen;
 
             if (segId == 0) {
-                isMatch = false;
+                running = false;
             }
 
             if (indexCurr + 2 < lenRaw && raw[indexCurr + 2] == 0) {
-                isMatch = false;
+                running = false;
             }
         }
 
