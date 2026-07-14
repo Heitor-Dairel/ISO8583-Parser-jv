@@ -112,7 +112,6 @@ public final class IPMParse extends IPMParameter {
 
     private IPMExtractResult extractIsoPayload(byte[] raw, int index, int lenRaw) {
 
-        int indexStart = index;
         int indexCurr = index;
         ByteArrayOutputStream payload = new ByteArrayOutputStream();
         int segId;
@@ -146,13 +145,13 @@ public final class IPMParse extends IPMParameter {
             }
         }
 
-        return new IPMExtractResult(payload.toByteArray(), indexCurr - indexStart);
+        return new IPMExtractResult(payload.toByteArray(), indexCurr - index);
 
     }
 
 }
 
-class IPMExtractResult {
+final class IPMExtractResult {
 
     public final byte[] payload;
     public final int consumed;
