@@ -126,3 +126,5 @@ END IF;
 
 RETURN v_custo_bandeira;
 END;
+
+$$;
