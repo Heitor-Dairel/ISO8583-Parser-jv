@@ -1,6 +1,7 @@
 package com.servnet.mastercard.log;
 
 import java.io.BufferedOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import com.servnet.mastercard.exception.IPMLogException;
 import com.servnet.mastercard.parameter.IPMParameter;
 
-public final class IPMLog extends IPMParameter implements AutoCloseable {
+public final class IPMLog extends IPMParameter implements Closeable {
 
     private final Logger logger = LoggerFactory.getLogger(IPMLog.class);
 
