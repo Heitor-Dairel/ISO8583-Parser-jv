@@ -2,7 +2,7 @@ package com.servnet.mastercard.parameter;
 
 import java.util.Objects;
 
-public class IPMParameter {
+public abstract class IPMParameter {
 
     protected IPMParameter(String fileDate, String fileCycle) {
 
