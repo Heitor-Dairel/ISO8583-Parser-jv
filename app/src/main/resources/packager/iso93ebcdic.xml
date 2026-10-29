@@ -81,7 +81,7 @@
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="15"
-        length="6"
+        length="4"
         name="Date, Settlement"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
@@ -146,12 +146,12 @@
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="28"
-        length="6"
+        length="9"
         name="Date, Reconciliation"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="29"
-        length="3"
+        length="9"
         name="Reconciliation indicator"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
@@ -161,7 +161,7 @@
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="31"
-        length="99"
+        length="23"
         name="Acquirer reference data"
         class="org.jpos.iso.IFE_LLCHAR" />
     <isofield
@@ -201,7 +201,7 @@
         class="org.jpos.iso.IFE_CHAR" />
     <isofield
         id="39"
-        length="3"
+        length="2"
         name="Action code"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
@@ -226,7 +226,7 @@
         class="org.jpos.iso.IFE_LLCHAR" />
     <isofield
         id="44"
-        length="99"
+        length="25"
         name="Additional response data"
         class="org.jpos.iso.IFE_LLCHAR" />
     <isofield
@@ -236,7 +236,7 @@
         class="org.jpos.iso.IFE_LLCHAR" />
     <isofield
         id="46"
-        length="204"
+        length="999"
         name="Amounts, Fees"
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
@@ -271,12 +271,12 @@
         class="org.jpos.iso.IFE_BINARY" />
     <isofield
         id="53"
-        length="48"
+        length="16"
         name="Security related control information"
-        class="org.jpos.iso.IFE_LLBINARY" />
+        class="org.jpos.iso.IFE_BINARY" />
     <isofield
         id="54"
-        length="120"
+        length="240"
         name="Amounts, additional"
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
@@ -286,19 +286,19 @@
         class="org.jpos.iso.IFE_LLLBINARY" />
     <isofield
         id="56"
-        length="35"
+        length="999"
         name="Original data elements"
-        class="org.jpos.iso.IFE_LLNUM" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="57"
-        length="3"
+        length="999"
         name="Authorization life cycle code"
-        class="org.jpos.iso.IFE_NUMERIC" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="58"
-        length="11"
+        length="999"
         name="Authorizing agent institution Id Code"
-        class="org.jpos.iso.IFE_LLNUM" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="59"
         length="999"
@@ -321,7 +321,7 @@
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
         id="63"
-        length="999"
+        length="16"
         name="Reserved for private use"
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
@@ -336,9 +336,9 @@
         class="org.jpos.iso.IFE_BINARY" />
     <isofield
         id="66"
-        length="204"
+        length="1"
         name="Amounts, original fees"
-        class="org.jpos.iso.IFE_LLLCHAR" />
+        class="org.jpos.iso.IFE_CHAR" />
     <isofield
         id="67"
         length="2"
@@ -416,22 +416,22 @@
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="82"
-        length="10"
+        length="12"
         name="Inquiries, reversal number"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="83"
-        length="10"
+        length="12"
         name="Payments, number"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="84"
-        length="10"
+        length="12"
         name="Payments, reversal number"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="85"
-        length="10"
+        length="12"
         name="Fee collections, number"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
@@ -456,17 +456,17 @@
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="90"
-        length="10"
+        length="42"
         name="Authorizations, reversal number"
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="91"
-        length="3"
+        length="1"
         name="Country code, transaction Dest. Inst."
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
         id="92"
-        length="3"
+        length="2"
         name="Country code, transaction Orig. Inst."
         class="org.jpos.iso.IFE_NUMERIC" />
     <isofield
@@ -481,14 +481,14 @@
         class="org.jpos.iso.IFE_LLNUM" />
     <isofield
         id="95"
-        length="99"
+        length="10"
         name="Card issuer reference data"
         class="org.jpos.iso.IFE_LLCHAR" />
     <isofield
         id="96"
-        length="999"
+        length="8"
         name="Key management data"
-        class="org.jpos.iso.IFE_LLLBINARY" />
+        class="org.jpos.iso.IFE_BINARY" />
     <isofield
         id="97"
         length="17"
@@ -531,37 +531,37 @@
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
         id="105"
-        length="16"
+        length="999"
         name="Credits, Chargeback amount"
-        class="org.jpos.iso.IFE_NUMERIC" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="106"
-        length="16"
+        length="999"
         name="Debits, Chargeback amount"
-        class="org.jpos.iso.IFE_NUMERIC" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="107"
-        length="10"
+        length="999"
         name="Credits, Chargeback number"
-        class="org.jpos.iso.IFE_NUMERIC" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="108"
-        length="10"
+        length="999"
         name="Debits, Chargeback number"
-        class="org.jpos.iso.IFE_NUMERIC" />
+        class="org.jpos.iso.IFE_LLLNUM" />
     <isofield
         id="109"
-        length="84"
+        length="999"
         name="Credits, Fee amounts"
-        class="org.jpos.iso.IFE_LLCHAR" />
+        class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
         id="110"
-        length="84"
+        length="999"
         name="Debits, Fee amounts"
-        class="org.jpos.iso.IFE_LLCHAR" />
+        class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
         id="111"
-        length="999"
+        length="12"
         name="Reserved for ISO use"
         class="org.jpos.iso.IFE_LLLCHAR" />
     <isofield
