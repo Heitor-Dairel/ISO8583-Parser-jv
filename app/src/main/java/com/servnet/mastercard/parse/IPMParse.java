@@ -98,7 +98,8 @@ public final class IPMParse extends IPMParameter {
 
         try {
 
-            return new GenericPackager(IPMParseConstants.PACKAGER_PATH);
+            return new GenericPackager(
+                    ClassLoader.getSystemClassLoader().getResourceAsStream("packager/iso93ebcdic.xml"));
 
         } catch (ISOException e) {
 
